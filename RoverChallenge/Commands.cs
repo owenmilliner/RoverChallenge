@@ -12,6 +12,7 @@ namespace RoverChallenge
         public int[,] grid = new int[100, 100];
         public int xPosition = 0, yPosition = 0;
         string direction = "South";
+        public bool gridBoundariesExceeded = false;
         #endregion
 
         /// <summary>
@@ -36,11 +37,18 @@ namespace RoverChallenge
         public void parseCommands()
         {
             fillGrid();
+            //Reset of variable.
+            gridBoundariesExceeded = false;
 
             for (int i = 0; i < commandsArray.Length; i++)
             {
                 string command = commandsArray[i].ToLower();
-                if (command.EndsWith("m"))
+                //If the boundaries are exceeded, break the loop and commit no further commands.
+                if (gridBoundariesExceeded == true)
+                {
+                    break;
+                }
+                else if (command.EndsWith("m"))
                 {
                     move(command);
                 }
@@ -81,6 +89,12 @@ namespace RoverChallenge
                     yPosition -= distance;
                     Console.WriteLine("Moving " + distance + "m North.");
                 }
+                //If the value exceeds that of the assigned grid, change bool value to true.
+                else
+                {
+                    Console.WriteLine("Unauthorised breach of mission grid. Mission aborted.");
+                    gridBoundariesExceeded = true;
+                }
             }
             else if (direction == "East")
             {
@@ -88,6 +102,11 @@ namespace RoverChallenge
                 {
                     xPosition += distance;
                     Console.WriteLine("Moving " + distance + "m East.");
+                }
+                else
+                {
+                    Console.WriteLine("Unauthorised breach of mission grid. Mission aborted.");
+                    gridBoundariesExceeded = true;
                 }
             }
             else if (direction == "South")
@@ -97,6 +116,11 @@ namespace RoverChallenge
                     yPosition += distance;
                     Console.WriteLine("Moving " + distance + "m South.");
                 }
+                else
+                {
+                    Console.WriteLine("Unauthorised breach of mission grid. Mission aborted.");
+                    gridBoundariesExceeded = true;
+                }
             }
             else if (direction == "West")
             {
@@ -104,6 +128,11 @@ namespace RoverChallenge
                 {
                     xPosition -= distance;
                     Console.WriteLine("Moving " + distance + "m West.");
+                }
+                else
+                {
+                    Console.WriteLine("Unauthorised breach of mission grid. Mission aborted.");
+                    gridBoundariesExceeded = true;
                 }
             }
             else
