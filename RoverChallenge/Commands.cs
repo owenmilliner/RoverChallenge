@@ -12,7 +12,24 @@ namespace RoverChallenge
         public int xPosition = 0, yPosition = 0;
         string direction = "South";
         public bool gridBoundariesExceeded = false;
+        public int[,] grid = new int[100, 100];
         #endregion
+
+        /// <summary>
+        /// Filling of mission grid with incrementing values.
+        /// </summary>
+        public void fillGrid()
+        {
+            int counter = 1;
+            for (int i = 0; i < grid.GetLength(0); i++)
+            {
+                for (int j = 0; j < grid.GetLength(1); j++)
+                {
+                    grid[i, j] = counter;
+                    counter++;
+                }
+            }
+        }
 
         /// <summary>
         /// Iterates through the commandsArray - calling upon the required function.
@@ -21,14 +38,18 @@ namespace RoverChallenge
         {
             //Aesthetic Improvements.
             Console.WriteLine("\nCalculating..."
-                + "\nStarting Position: [" + xPosition + ", " + yPosition + "]."
-                + "\nStarting Direction: " + direction + "\n");
+                + "\nStarting Coordinates: [" + xPosition + ", " + yPosition + "]."
+                + "\nStarting Position: " + grid[yPosition, xPosition] + " " + direction + "\n");
+
+            fillGrid();
 
             //Reset of variable.
             gridBoundariesExceeded = false;
 
             for (int i = 0; i < commandsArray.Length; i++)
             {
+                //Aesthetic Improvement.
+                Console.WriteLine("Command " + (i + 1));
                 string command = commandsArray[i].ToLower();
                 //If the boundaries are exceeded, break the loop and commit no further commands.
                 if (gridBoundariesExceeded == true)
@@ -51,6 +72,7 @@ namespace RoverChallenge
                 {
                     Console.WriteLine("Invalid command.");
                 }
+                Console.WriteLine("\n");
             }
         }
 
@@ -127,7 +149,9 @@ namespace RoverChallenge
                 Console.WriteLine("Invalid Direction.");
             }
 
-            Console.WriteLine("Rover Position: [" + xPosition + ", " + yPosition + "].");
+            //Logs the coordinates, and the grid position.
+            Console.WriteLine("Rover Coordinates: [" + xPosition + ", " + yPosition + "].");
+            Console.WriteLine("Grid Position: " + grid[yPosition, xPosition] + " " + direction);
             #endregion
         }
 
