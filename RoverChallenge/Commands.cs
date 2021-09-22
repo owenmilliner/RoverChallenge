@@ -19,6 +19,11 @@ namespace RoverChallenge
         /// </summary>
         public void parseCommands()
         {
+            //Aesthetic Improvements.
+            Console.WriteLine("\nCalculating..."
+                + "\nStarting Position: [" + xPosition + ", " + yPosition + "]."
+                + "\nStarting Direction: " + direction + "\n");
+
             //Reset of variable.
             gridBoundariesExceeded = false;
 

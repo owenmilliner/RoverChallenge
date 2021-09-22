@@ -42,6 +42,9 @@ namespace RoverChallenge
 
             while (active == true)
             {
+                //Aesthetic improvements.
+                Console.WriteLine("\nAwaiting input...");
+
                 //Read the input of the user.
                 string userCommand = Console.ReadLine().ToLower();
                 //If default commands are to be used.
