@@ -33,14 +33,59 @@ namespace RoverChallenge
         {
             Commands mission = new Commands();
 
-            //Template commands to be executed.
-            mission.commandsArray[0] = "50m";
-            mission.commandsArray[1] = "Left";
-            mission.commandsArray[2] = "23m";
-            mission.commandsArray[3] = "Left";
-            mission.commandsArray[4] = "4m";
+            //Allows the entering of additional commands, after the initial 5 have been entered.
+            bool active = true;
+            //Welcome message to the program.
+            Console.WriteLine("Welcome to NASA's Mars Rover."
+                + "\nPlease a maximum of five commands to be sent to the Mars Rover."
+                + "\nAlternatively, enter 'default' for a mission template.");
 
-            mission.parseCommands();
+            while (active == true)
+            {
+                //Read the input of the user.
+                string userCommand = Console.ReadLine().ToLower();
+                //If default commands are to be used.
+                if (userCommand == "default")
+                {
+                    //Template commands to be exectued.
+                    mission.commandsArray[0] = "50m";
+                    mission.commandsArray[1] = "Left";
+                    mission.commandsArray[2] = "23m";
+                    mission.commandsArray[3] = "Left";
+                    mission.commandsArray[4] = "4m";
+                    Console.WriteLine("\nLoading mission template..." +
+                        "\n" + mission.commandsArray[0] +
+                        "\n" + mission.commandsArray[1] +
+                        "\n" + mission.commandsArray[2] +
+                        "\n" + mission.commandsArray[3] +
+                        "\n" + mission.commandsArray[4]);
+                }
+                //If custom commands are to be used.
+                else
+                {
+                    //Update first command value.
+                    mission.commandsArray[0] = userCommand;
+                    //For the remaining 4 commands.
+                    for (int i = 1; i < mission.commandsArray.Length; i++)
+                    {
+                        //Print the submitted command, and the remaining count to submit.
+                        Console.WriteLine(userCommand + " submitted. You have " + (mission.commandsArray.Length - i) + " commands remaining.");
+                        //Update userCommand variable, and assign it to the next value in the array.
+                        userCommand = Console.ReadLine().ToLower();
+                        mission.commandsArray[i] = userCommand;
+                    }
+                }
+
+                mission.parseCommands();
+
+                //Checks whether the user would like to continue or not.
+                Console.WriteLine("\nAll commands executed. Would you like to continue? Enter 'Y' or 'N'.");
+                userCommand = Console.ReadLine().ToUpper();
+                if (userCommand == "N")
+                {
+                    active = false;
+                }
+            }
         }
     }
 }
