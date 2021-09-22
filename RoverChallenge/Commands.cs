@@ -36,11 +36,11 @@ namespace RoverChallenge
                 }
                 else if (command.Equals("left"))
                 {
-                    Console.WriteLine("Moving Left");
+                    turnRover("Left");
                 }
                 else if (command.Equals("right"))
                 {
-                    Console.WriteLine("Moving Right");
+                    turnRover("Right");
                 }
                 else
                 {
@@ -124,6 +124,65 @@ namespace RoverChallenge
 
             Console.WriteLine("Rover Position: [" + xPosition + ", " + yPosition + "].");
             #endregion
+        }
+
+        /// <summary>
+        /// Function to turn the rover (change the direction variable).
+        /// </summary>
+        /// <param name="redirect"></param>
+        public void turnRover(string redirect)
+        {
+            //Checks the current direction, and changes the value based upon the redirection command provided.
+            if (direction == "North")
+            {
+                if (redirect == "Left")
+                {
+                    direction = "West";
+                }
+                else if (redirect == "Right")
+                {
+                    direction = "East";
+                }
+            }
+            else if (direction == "East")
+            {
+                if (redirect == "Left")
+                {
+                    direction = "North";
+                }
+                else if (redirect == "Right")
+                {
+                    direction = "South";
+                }
+            }
+            else if (direction == "South")
+            {
+                if (redirect == "Left")
+                {
+                    direction = "East";
+                }
+                else if (redirect == "Right")
+                {
+                    direction = "West";
+                }
+            }
+            else if (direction == "West")
+            {
+                if (redirect == "Left")
+                {
+                    direction = "South";
+                }
+                else if (redirect == "Right")
+                {
+                    direction = "North";
+                }
+            }
+            else
+            {
+                Console.WriteLine("Turning Error.");
+            }
+
+            Console.WriteLine("Rover turned. Now pointing " + direction + ".");
         }
     }
 }
