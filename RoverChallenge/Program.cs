@@ -32,6 +32,15 @@ namespace RoverChallenge
         static void Main(string[] args)
         {
             Commands mission = new Commands();
+
+            //Template commands to be executed.
+            mission.commandsArray[0] = "50m";
+            mission.commandsArray[1] = "Left";
+            mission.commandsArray[2] = "23m";
+            mission.commandsArray[3] = "Left";
+            mission.commandsArray[4] = "4m";
+
+            mission.parseCommands();
         }
     }
 }
