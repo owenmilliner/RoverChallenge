@@ -30,6 +30,9 @@ namespace RoverChallenge
             }
         }
 
+        /// <summary>
+        /// Iterates through the commandsArray - calling upon the required function.
+        /// </summary>
         public void parseCommands()
         {
             fillGrid();
@@ -39,7 +42,7 @@ namespace RoverChallenge
                 string command = commandsArray[i].ToLower();
                 if (command.EndsWith("m"))
                 {
-                    Console.WriteLine("Moving");    
+                    move(command);
                 }
                 else if (command.Equals("left"))
                 {
@@ -54,6 +57,62 @@ namespace RoverChallenge
                     Console.WriteLine("Invalid command.");
                 }
             }
+        }
+
+        /// <summary>
+        /// Handles the movement of the Mars Rover.
+        /// </summary>
+        /// <param name="distanceString"></param>
+        public void move(string distanceString)
+        {
+            //Removing the 'm' from the movement command.
+            distanceString = distanceString.Substring(0, distanceString.Length - 1);
+            //Parsing to an integer.
+            int distance = Int32.Parse(distanceString);
+
+            #region Movement
+            //Checks the direction the rover is facing.
+            if (direction == "North")
+            {
+                //Check to ensure the boundary is not exceeded.
+                if ((yPosition - distance > -1))
+                {
+                    //Moves the rover to a new position.
+                    yPosition -= distance;
+                    Console.WriteLine("Moving " + distance + "m North.");
+                }
+            }
+            else if (direction == "East")
+            {
+                if ((xPosition + distance < 101))
+                {
+                    xPosition += distance;
+                    Console.WriteLine("Moving " + distance + "m East.");
+                }
+            }
+            else if (direction == "South")
+            {
+                if ((yPosition + distance < 101))
+                {
+                    yPosition += distance;
+                    Console.WriteLine("Moving " + distance + "m South.");
+                }
+            }
+            else if (direction == "West")
+            {
+                if ((xPosition - distance > -1))
+                {
+                    xPosition -= distance;
+                    Console.WriteLine("Moving " + distance + "m West.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid Direction.");
+            }
+
+            Console.WriteLine("Rover Position: [" + xPosition + ", " + yPosition + "].");
+            #endregion
         }
     }
 }
