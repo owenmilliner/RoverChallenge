@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "QapSrQZ1Maa8Q2se64n5KDQC0xtPR7xmpjPTXfbWQKLr7umiolipfHfSYCIaZD4kTlXpzcQ+vkBnL5PrUP9Hww==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\owenm\\source\\RoverChallenge\\RoverChallenge\\RoverChallenge.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\owenm\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.16\\microsoft.netcore.app.host.win-x64.3.1.16.nupkg.sha512"
+  ],
+  "logs": []
+}
