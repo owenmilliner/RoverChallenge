@@ -31,7 +31,7 @@ namespace RoverChallenge
         */
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Commands mission = new Commands();
         }
     }
 }
