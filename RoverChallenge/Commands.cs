@@ -9,34 +9,16 @@ namespace RoverChallenge
         #region Variables
         //Variables to be used throughout command execution.
         public string[] commandsArray = new string[5];
-        public int[,] grid = new int[100, 100];
         public int xPosition = 0, yPosition = 0;
         string direction = "South";
         public bool gridBoundariesExceeded = false;
         #endregion
 
         /// <summary>
-        /// Filling the contents of the mission grid.
-        /// </summary>
-        public void fillGrid()
-        {
-            int counter = 1;
-            for (int i = 0; i < grid.GetLength(0); i++)
-            {
-                for (int j = 0; j < grid.GetLength(1); j++)
-                {
-                    grid[i, j] = counter;
-                    counter++;
-                }
-            }
-        }
-
-        /// <summary>
         /// Iterates through the commandsArray - calling upon the required function.
         /// </summary>
         public void parseCommands()
         {
-            fillGrid();
             //Reset of variable.
             gridBoundariesExceeded = false;
 
